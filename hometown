@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murray Hometown Property Care - Professional Property Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dusty-rose: #B09C9C;
+            --warm-cream: #F4EDCC;
+            --soft-tan: #E8DABB;
+            --golden-mustard: #D4A748;
+            --pale-blue: #C5D5DA;
+            --navy: #2C4563;
+            --deep-navy: #1A2F47;
+            --charcoal: #2C3E50;
+            --deep-brown: #5C4D44;
+            --slate-blue: #5B7C99;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--charcoal);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #FAF6EB 0%, var(--warm-cream) 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--pale-blue);
+            color: var(--navy);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--navy);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to bottom, rgba(44, 69, 99, 0.94), rgba(26, 47, 71, 0.92)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><path fill="%23fff" opacity="0.08" d="M0,150 Q300,80 600,150 T1200,150 L1200,400 L0,400 Z"/><circle cx="150" cy="100" r="3" fill="%23D4A748" opacity="0.5"/><circle cx="850" cy="80" r="2" fill="%23C5D5DA" opacity="0.4"/><circle cx="400" cy="120" r="2.5" fill="%23D4A748" opacity="0.4"/><circle cx="650" cy="90" r="2" fill="%23C5D5DA" opacity="0.35"/></svg>');
+            background-size: cover;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '🍃';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.06;
+            top: -50px;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .hero h1 {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero .tagline {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.5rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.8s ease-out 0.2s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--golden-mustard), #E0B857);
+            color: var(--navy);
+            box-shadow: 0 4px 15px rgba(212, 167, 72, 0.3);
+            font-weight: 700;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 167, 72, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--warm-cream);
+            color: var(--navy);
+            border: 2px solid rgba(44, 69, 99, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: var(--pale-blue);
+            border-color: var(--navy);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #6B7280;
+            line-height: 1.6;
+        }
+
+        /* Booking Form Styles */
+        .booking-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(27, 73, 101, 0.15);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--slate-blue);
+            padding-left: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid #DDD4BA;
+            border-radius: 10px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #FEFDFB;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--slate-blue);
+            box-shadow: 0 0 0 3px rgba(197, 213, 218, 0.25);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .service-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-option {
+            position: relative;
+        }
+
+        .service-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .service-option label {
+            display: block;
+            padding: 1.2rem;
+            border: 2px solid #DDD4BA;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #FEFDFB;
+        }
+
+        .service-option input[type="checkbox"]:checked + label {
+            border-color: var(--slate-blue);
+            background: rgba(91, 124, 153, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(91, 124, 153, 0.25);
+        }
+
+        .service-name {
+            font-weight: 600;
+            color: var(--navy);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .service-price {
+            font-size: 0.9rem;
+            color: var(--slate-blue);
+            font-weight: 600;
+        }
+
+        .photo-upload-area {
+            border: 2px dashed #DDD4BA;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: #FEFDFB;
+            cursor: pointer;
+        }
+
+        .photo-upload-area:hover {
+            border-color: var(--slate-blue);
+            background: rgba(197, 213, 218, 0.12);
+        }
+
+        .upload-prompt {
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            font-size: 0.9rem;
+            color: #6B7280;
+            margin-top: 0.3rem;
+        }
+
+        .photo-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .photo-preview:empty {
+            display: none;
+        }
+
+        .photo-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(212, 167, 72, 0.9);
+            color: var(--navy);
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            transition: all 0.2s ease;
+        }
+
+        .photo-remove:hover {
+            background: var(--golden-mustard);
+            transform: scale(1.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, var(--golden-mustard), #E0B857);
+            color: var(--navy);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Work Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 167, 72, 0.3);
+            letter-spacing: 0.02em;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 167, 72, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, var(--navy), var(--deep-navy));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .success-message h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #E5EDF2, var(--pale-blue));
+            border-radius: 15px;
+            border-left: 4px solid var(--slate-blue);
+        }
+
+        .info-section h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--navy), var(--slate-blue));
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.mobile-active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .booking-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .service-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showSection('home'); return false;">Murray Hometown</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a class="nav-link active" onclick="showSection('home'); return false;">Home</a></li>
+                <li><a class="nav-link" onclick="showSection('about'); return false;">About</a></li>
+                <li><a class="nav-link" onclick="showSection('services'); return false;">Book Services</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="content-section active">
+        <div class="hero">
+            <h1>Murray Hometown Property Care</h1>
+            <p class="tagline">Your Neighbor for Professional Snow Removal & Property Services</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="showSection('services')">Book Services Now</button>
+                <button class="btn btn-secondary" onclick="showSection('about')">Learn More</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 style="text-align: center; color: var(--navy); margin-bottom: 2rem; font-size: 2rem;">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">❄️</div>
+                    <h3>Snow Plowing</h3>
+                    <p>24/7 emergency snow removal for driveways, sidewalks, and parking lots. Fast response during winter storms.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🍂</div>
+                    <h3>Leaf Removal</h3>
+                    <p>Complete fall cleanup services. We'll clear your yard and keep it looking pristine throughout autumn.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Gutter Cleaning</h3>
+                    <p>Prevent water damage with professional gutter cleaning. Keep your home protected year-round.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🪟</div>
+                    <h3>Window Cleaning</h3>
+                    <p>Crystal-clear exterior window cleaning for homes and businesses. Streak-free guaranteed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="content-section">
+        <div class="container">
+            <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 900px; margin: 0 auto;">
+                <h2 style="color: var(--navy); font-size: 2.5rem; margin-bottom: 1.5rem;">About Murray Hometown Property Care</h2>
+                
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #4B5563;">
+                    We're your neighbors in Murray, Kentucky, dedicated to keeping your property looking its best through every season. What started as a snow plowing service has grown into a full-service property care company because we believe in taking care of our community year-round.
+                </p>
+
+                <h3 style="color: var(--navy); font-size: 1.8rem; margin: 2rem 0 1rem;">Our Story</h3>
+                <p style="margin-bottom: 1.5rem; color: #4B5563;">
+                    Murray Hometown Property Care was founded on a simple principle: your neighbors should help neighbors. We live here, work here, and care about this community. When winter storms hit, we're out clearing driveways before sunrise. When fall leaves pile up, we're there to help. When your gutters need cleaning or your windows need washing, we treat your home like our own.
+                </p>
+
+                <h3 style="color: var(--navy); font-size: 1.8rem; margin: 2rem 0 1rem;">Why Choose Us?</h3>
+                <div style="display: grid; gap: 1.5rem; margin: 2rem 0;">
+                    <div style="display: flex; gap: 1rem; align-items: start;">
+                        <div style="font-size: 2rem;">🏠</div>
+                        <div>
+                            <strong style="color: var(--navy); font-size: 1.1rem;">Local & Trusted</strong>
+                            <p style="color: #6B7280; margin-top: 0.3rem;">We're not a franchise or big corporation. We're your Murray neighbors who take pride in serving our community.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; align-items: start;">
+                        <div style="font-size: 2rem;">⚡</div>
+                        <div>
+                            <strong style="color: var(--navy); font-size: 1.1rem;">Reliable & Fast</strong>
+                            <p style="color: #6B7280; margin-top: 0.3rem;">Emergency snow removal available 24/7. For all services, we show up on time and get the job done right.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; align-items: start;">
+                        <div style="font-size: 2rem;">💰</div>
+                        <div>
+                            <strong style="color: var(--navy); font-size: 1.1rem;">Fair & Transparent Pricing</strong>
+                            <p style="color: #6B7280; margin-top: 0.3rem;">No hidden fees, no surprise charges. We give you honest quotes and deliver exactly what we promise.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; align-items: start;">
+                        <div style="font-size: 2rem;">🏆</div>
+                        <div>
+                            <strong style="color: var(--navy); font-size: 1.1rem;">Quality Guaranteed</strong>
+                            <p style="color: #6B7280; margin-top: 0.3rem;">Professional equipment, experienced team, and a commitment to excellence in every job we do.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--navy); font-size: 1.8rem; margin: 2rem 0 1rem;">Our Commitment to Murray</h3>
+                <p style="margin-bottom: 1.5rem; color: #4B5563;">
+                    We believe in supporting local. That's why we hire locally, buy supplies from Murray businesses when possible, and reinvest in our community. When you choose Murray Hometown Property Care, you're supporting a local family business that cares about keeping Murray beautiful.
+                </p>
+
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--pale-blue); border-radius: 15px;">
+                    <p style="font-size: 1.3rem; color: var(--navy); font-weight: 600; margin-bottom: 1rem;">Ready to work with your hometown property care experts?</p>
+                    <button class="btn btn-primary" onclick="showSection('services')">Book Your Service Today</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services/Booking Section -->
+    <section id="services" class="content-section">
+        <div class="container">
+            <div class="booking-card">
+                <h2>Book Your Service</h2>
+                
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Smith">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Property Address *</label>
+                        <input type="text" id="address" name="address" required placeholder="123 Main Street, Murray, KY">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Services Needed *</label>
+                        <div class="service-options">
+                            <div class="service-option">
+                                <input type="checkbox" id="driveway" name="service" value="driveway">
+                                <label for="driveway">
+                                    <span class="service-name">Driveway</span>
+                                    <span class="service-price">$40-60</span>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="sidewalk" name="service" value="sidewalk">
+                                <label for="sidewalk">
+                                    <span class="service-name">Sidewalk</span>
+                                    <span class="service-price">$25-35</span>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="parking" name="service" value="parking">
+                                <label for="parking">
+                                    <span class="service-name">Parking Lot</span>
+                                    <span class="service-price">$80-150</span>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="salting" name="service" value="salting">
+                                <label for="salting">
+                                    <span class="service-name">Salt/De-icing</span>
+                                    <span class="service-price">$30-50</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="serviceType">Service Type *</label>
+                        <select id="serviceType" name="serviceType" required>
+                            <option value="">Select service type</option>
+                            <option value="emergency">Emergency (ASAP)</option>
+                            <option value="scheduled">Scheduled Service</option>
+                            <option value="seasonal">Seasonal Contract</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date</label>
+                        <input type="date" id="preferredDate" name="preferredDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="propertySize">Property Size (approximate sq ft)</label>
+                        <input type="text" id="propertySize" name="propertySize" placeholder="e.g., 2000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photos">Photos of Property (Optional)</label>
+                        <div class="photo-upload-area" id="photoUploadArea">
+                            <input type="file" id="photos" name="photos" accept="image/*" multiple style="display: none;">
+                            <div class="upload-prompt" onclick="document.getElementById('photos').click()">
+                                <div class="upload-icon">📷</div>
+                                <p><strong>Click to upload photos</strong></p>
+                                <p class="upload-hint">Add photos of your driveway, walkways, or property</p>
+                            </div>
+                            <div id="photoPreview" class="photo-preview"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Additional Notes</label>
+                        <textarea id="notes" name="notes" placeholder="Any special instructions, gate codes, or specific requirements..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Request Service Quote</button>
+                </form>
+
+                <div id="successMessage" class="success-message">
+                    <h3>✓ Booking Request Received!</h3>
+                    <p>We'll contact you within 2 hours to confirm your service and provide a final quote.</p>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>Why Choose Murray Hometown Property Care?</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">⚡</div>
+                        <div>
+                            <strong>Fast Response</strong>
+                            <p>Emergency services available 24/7 during snow events</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🏠</div>
+                        <div>
+                            <strong>Local & Trusted</strong>
+                            <p>Your Murray neighbors - we live and work here too</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <div>
+                            <strong>Fair Pricing</strong>
+                            <p>Transparent quotes with no hidden fees</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🏆</div>
+                        <div>
+                            <strong>Quality Guaranteed</strong>
+                            <p>Professional equipment and experienced operators</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Murray Hometown Property Care. Proudly serving Murray, Kentucky.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">Licensed & Insured | Emergency Services Available</p>
+    </footer>
+
+    <script>
+        // Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId).classList.add('active');
+            
+            const links = document.querySelectorAll('.nav-link');
+            if (sectionId === 'home') links[0].classList.add('active');
+            if (sectionId === 'about') links[1].classList.add('active');
+            if (sectionId === 'services') links[2].classList.add('active');
+            
+            document.getElementById('navLinks').classList.remove('mobile-active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('mobile-active');
+        }
+
+        // Form handling
+        const dateInput = document.getElementById('preferredDate');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        let selectedFiles = [];
+        const photosInput = document.getElementById('photos');
+        const photoPreview = document.getElementById('photoPreview');
+
+        photosInput.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    selectedFiles.push(file);
+                    displayPhoto(file);
+                }
+            });
+            
+            e.target.value = '';
+        });
+
+        function displayPhoto(file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+                photoItem.innerHTML = `
+                    <img src="${e.target.result}" alt="Property photo">
+                    <button type="button" class="photo-remove" onclick="removePhoto(this, '${file.name}')">&times;</button>
+                `;
+                photoPreview.appendChild(photoItem);
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        window.removePhoto = function(button, fileName) {
+            selectedFiles = selectedFiles.filter(f => f.name !== fileName);
+            button.parentElement.remove();
+        };
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const checkboxes = document.querySelectorAll('input[name="service"]:checked');
+            if (checkboxes.length === 0) {
+                alert('Please select at least one service');
+                return;
+            }
+
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (key === 'service') {
+                    if (!data[key]) data[key] = [];
+                    data[key].push(value);
+                } else if (key !== 'photos') {
+                    data[key] = value;
+                }
+            }
+
+            if (selectedFiles.length > 0) {
+                data.photos = selectedFiles.map(f => f.name);
+                console.log('Photos to upload:', selectedFiles);
+            }
+
+            console.log('Booking Data:', data);
+            
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
